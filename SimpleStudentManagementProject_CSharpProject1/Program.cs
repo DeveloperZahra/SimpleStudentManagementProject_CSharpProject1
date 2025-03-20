@@ -48,8 +48,52 @@ namespace SimpleStudentManagementProject_CSharpProject1
         // 1. Add a new student record (Name, Age, Marks)______
         static void AddaNewStudent()
         {
+            Console.WriteLine("Enter student details:  \n");
 
+            while (true)
+            {
+                Console.Write("Enter student's name: ");
+                string name = Console.ReadLine();
+                if (name.ToLower() == "done") break;
+
+                names[StudentCounter] = name;
+
+                Console.Write("Enter student's age: ");
+                Ages[StudentCounter] = int.Parse(Console.ReadLine());
+
+                Console.Write("Enter student's marks: ");
+                marks[StudentCounter] = double.Parse(Console.ReadLine());
+
+                Console.Write("Enter student's enrollment date (yyyy-mm-dd): ");
+                dates[StudentCounter] = DateTime.Parse(Console.ReadLine());
+
+               
+                StudentCounter++;
+
+                if (StudentCounter == 100) 
+                {
+                    Console.WriteLine("Maximum number of students reached.");
+                    break;
+                }
+            }
+
+            Console.WriteLine("\nStudent Information:");
+            for (int i = 0; i < StudentCounter; i++)
+            {
+                Console.WriteLine($"Student {i + 1}:");
+                Console.WriteLine($"Name: {names[i]}");
+                Console.WriteLine($"Age: {Ages[i]}");
+                Console.WriteLine($"Marks: {marks[i]}");
+                Console.WriteLine($"Enrollment Date: {dates[i]:yyyy-MM-dd}");
+                Console.WriteLine();
+               
+            }
+
+            Console.WriteLine($"Total number of students: {StudentCounter}");
+           
         }
+
+        
 
         //2. View all students_______
         static void ViewStudents()
