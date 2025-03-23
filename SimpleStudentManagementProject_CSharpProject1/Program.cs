@@ -10,6 +10,8 @@ namespace SimpleStudentManagementProject_CSharpProject1
         static int[] Age = new int[5];
         static string[] Name = new string[5];
         static DateTime[] Date = new DateTime[5];
+        static bool[] isPrinted = new bool[5];
+        static int[] sorted_index = new int[5];
         static int StudentCounter = 0;
         static void Main(string[] args)
         {
@@ -178,14 +180,51 @@ namespace SimpleStudentManagementProject_CSharpProject1
         //5. Find the top-performing student___
         static void FindTheTopPerformingStudent()
         {
-
+            double largest_Mark = 0;
+            int index = 0;
+            for (int i = 0; i < StudentCounter; i++)
+            {
+                if (Mark[i] > largest_Mark)
+                {
+                    largest_Mark = Mark[i];
+                    index = Array.IndexOf(Mark, Mark[i]);
+                }
+            }
+            Console.WriteLine($"The top pPerforming Student is: {Name[index]} with mark: {largest_Mark}");
         }
 
-        //6. Sort students by marks (highest to lowest)
-        static void SortStudentsByMarks()
-        {
+        //6. Sort students by marks (highest to lowest)____
+        //static void SortStudentsByMarks()
+        //{
+           
+        //    for (int i = 0; i < StudentCounter; i++)
+        //    {
+        //        isPrinted[i] = false;
+        //    }
+        //    for (int i = 0; i < StudentCounter; i++)
+        //    {
+        //        double largest_mark = 0;
+        //        int index = 0;
+        //        for (int j = 0; j < StudentCounter; j++)
+        //        {
+        //            if (Mark[j] > largest_mark && isPrinted[j] == false)
+        //            {
+        //                largest_mark = Mark[j];
+        //                index = Array.IndexOf(Mark, Mark[j]);
+        //            }
+        //        }
+        //        sorted_index[i] = index;
+        //        isPrinted[index] = true;
 
-        }
+        //    }
+        //    Console.WriteLine("Student Information is arranged in descending order: " +
+        //          "\n\nName | Age | Mark | Enrollment date");
+        //    for (int i = 0; i < StudentCounter; i++)
+        //    {
+        //        Console.WriteLine($"{Name[sorted_index[i]]} | {Age[sorted_index[i]]} |" +
+        //                          $" {Mark[sorted_index[i]]} | {Date[sorted_index[i]]}");
+        //    }
+        //}
 
         //7. Delete a student record (handle shifting logic)____
         static void DeleteaStudentRecord()
