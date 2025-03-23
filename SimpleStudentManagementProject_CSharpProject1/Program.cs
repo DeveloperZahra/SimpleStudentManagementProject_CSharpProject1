@@ -162,7 +162,17 @@ namespace SimpleStudentManagementProject_CSharpProject1
         //4. Calculate the class average_____
         static void CalculateTheClassAverage()
         {
-
+         
+                double sum = 0;
+                double Average;
+                for (int i = 0; i < StudentCounter; i++)
+                {
+                    sum = sum + Mark[i];
+                }
+                Average = sum / StudentCounter;
+                double rounded_average = Math.Round(Average, 2);
+                Console.WriteLine($"The student average is: {rounded_average}");
+            
         }
 
         //5. Find the top-performing student___
