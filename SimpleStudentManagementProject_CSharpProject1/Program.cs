@@ -210,28 +210,33 @@ namespace SimpleStudentManagementProject_CSharpProject1
             //to loop in all student ...
             for (int i = 0; i < StudentCounter; i++)
             {
-                double lar_mark = 0;
+                double largest_mark = 0;
                 int index = 0;
+                for (int j = 0; j < StudentCounter; j++)
                 {
-                    if (Mark[i] < Mark[j])
+                    if (Mark[j] > largest_mark && isPrinted[j] == false)
                     {
-                        // Swap Marks
-                        int tempMark = Mark[i];
-                        Mark[i] = Mark[j];
-                        Mark[j] = tempMark;
-
-                        // Swap names
-                        string tempName = students[i];
-                        students[i] = students[j];
-                        students[j] = tempName;
-
-                        // Swap ages
-                        int tempAge = ages[i];
-                        ages[i] = ages[j];
-                        ages[j] = tempAge;
+                        largest_mark = Mark[j];
+                        
+                        //to store the index of the largest mark ...
+                        index = j;
                     }
                 }
+                //to store index of largest mark which is not printed yet in sorted_array ...
+                sorted_index[i] = index;
+                //to set the largest mark as printed in isPrinted array so we do not print it again ...
+                isPrinted[index] = true;
+
             }
+            Console.WriteLine("Student Information (Descending Order): " +
+                  "\n\nName | Age | Mark | Enrollment date");
+            //to print all student recored after we sorted them (Descending Order) ...
+            for (int i = 0; i < StudentCounter; i++)
+            {
+                Console.WriteLine($"{Name[sorted_index[i]]} | {Age[sorted_index[i]]} |" +
+                                  $" {Mark[sorted_index[i]]} | {Date[sorted_index[i]]}");
+            }
+        }
 
             //7. Delete a student record (handle shifting logic)____
             static void DeleteaStudentRecord()
