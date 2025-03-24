@@ -129,26 +129,22 @@ namespace SimpleStudentManagementProject_CSharpProject1
 
             {
                 try
+            { 
 
-                {
-                    //Adding student information to the array...
-                    Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
-                    for (int i = 0; i < Mark.Length; i++)
-                    {
-                        if (Name[i] != "" && Age[i] != 0 && Mark[i] != 0) //Check if the student information record exists to print...
-                        {
-                            Console.WriteLine($"{Name[i]} | {Age[i]} | {Mark[i]} | {Date[i]}");
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    for (int i = 0; i < StudentCounter; i++)//Show the rest of the students .... 
-                    {
-                        Console.WriteLine($"{Name[i]} | {Age[i]} | {Mark[i]} | {Date[i]}");
-                    }
-                }
+                 if (StudentCounter == 0)
+            {
+                Console.WriteLine("No students available.");
+                return;
+            }
+            for (int i = 0; i < StudentCounter; i++)
+            {
+                Console.WriteLine($"Student {i + 1}:");
+                Console.WriteLine($"Name: {Name[i]}");
+                Console.WriteLine($"Mark: {Mark[i]}");
+                Console.WriteLine($"Age: {Age[i]}");
+                Console.WriteLine($"Date of Enrollment: {Date[i]:yyyy-MM-dd HH:mm:ss}\n");
+            }
+            }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"An error occurred: {ex.Message}");
