@@ -132,36 +132,35 @@ namespace SimpleStudentManagementProject_CSharpProject1
         static void FindaStudentByName()
         {
             char choice;
+            //Create a loop to repeat the process of searching for the student's name until it is found according to the user's requirements
             do
-            {
-                string search_name;
-                
-                int flag = 0;
-                Console.WriteLine("Enter student Name:");
-                search_name = Console.ReadLine().ToLower();
-
+            { 
+            Console.Write("\nEnter a student name to search: ");
+            string searchName = Console.ReadLine().ToLower();// store the name to search...
+                bool found = false;
+                // use a student counter to repeat according to the number of students coming out...
                 for (int i = 0; i < StudentCounter; i++)
+            {
+                if (Name[i].ToLower() == searchName)
                 {
-                    
-                    if (Name[i].ToLower() == search_name)
-                    {
-                        Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
-                        Console.WriteLine($"{Name[i]} | {Age[i]} | {Mark[i]} | {Date[i]}");
-                        flag = 1;
-                    }
+                    Console.WriteLine($"Student found: {Name[i]} - Score: {Name[i]}");
+                    found = true;
+                    break;
                 }
-                if (flag == 0)
-                {
-                    Console.WriteLine("Not found");
-                }
+            }
 
-                Console.WriteLine("Do you want to search for anther student? Yes / No");
+            if (!found)
+            {
+                Console.WriteLine("Student not found! Please Try again.");
+            }
+
+            Console.WriteLine("Do you want to search for anther student? y / n");
                 choice = Console.ReadKey().KeyChar;
 
             } while (choice == 'y' || choice == 'Y');
 
         }
-        
+
 
         //4. Calculate the class average_____
         static void CalculateTheClassAverage()
@@ -185,13 +184,16 @@ namespace SimpleStudentManagementProject_CSharpProject1
             double largest_Mark = 0;
             int index = 0;
             for (int i = 0; i < StudentCounter; i++)
-            {
+            {   // to find the largest mark in array...
                 if (Mark[i] > largest_Mark)
                 {
                     largest_Mark = Mark[i];
+                   // to store the index of the largest mark
                     index = Array.IndexOf(Mark, Mark[i]);
+
                 }
             }
+            // Display the top-performing student
             Console.WriteLine($"The top pPerforming Student is: {Name[index]} with Mark: {largest_Mark}");
         }
 
