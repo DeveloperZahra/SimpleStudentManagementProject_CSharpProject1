@@ -1,4 +1,5 @@
-﻿using System.Reflection.Metadata;
+﻿using Microsoft.VisualBasic;
+using System.Reflection.Metadata;
 using System.Xml.Linq;
 
 namespace SimpleStudentManagementProject_CSharpProject1
@@ -105,24 +106,25 @@ namespace SimpleStudentManagementProject_CSharpProject1
 
         //2. View all students_______
         static void ViewStudents()
+
         {
-//            Student[] students = new Student[StudentCounter];
-
-//        new Student { Name = "Zahra", Age = 20, Mark = 85.5, Date = DateTime.Now
-//    };
-//    new Student { Name = "Sara", Age = 17, Mark = 90.0, Date = DateTime.Now
-//};
-//new Student { Name = "Saif", Age = 21, Mark = 78.3, Date = DateTime.Now };
-//new Student { Name = "Ali", Age = 18, Mark = 88.2, Date = DateTime.Now };
-//new Student { Name = "Sami", Age = 19, Mark = 92.7, Date = DateTime.Now };
-
-
-//// Display all stored students
-//Console.WriteLine("List of Students:");
-//foreach (Student student in students)
-//{
-//    Console.WriteLine($"Name: {student.Name}, Age: {student.Age}, Mark: {student.Mark}, Entry Time: {student.EntryTime}");
-//}
+            //Adding student information to the array...
+            Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
+            for (int i = 0; i < Mark.Length; i++)
+            {
+                if (Name[i] != "" && Age[i] != 0 && Mark[i] != 0) //Check if the student information record exists to print...
+                {
+                    Console.WriteLine($"{Name[i]} | {Age[i]} | {Mark[i]} | {Date[i]}");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            for (int i = 0; i < StudentCounter; i++)//Show the rest of the students .... 
+            {
+                Console.WriteLine($"{Name[i]} | {Age[i]} | {Mark[i]} | {Date[i]}");
+            }
         }
 
 
