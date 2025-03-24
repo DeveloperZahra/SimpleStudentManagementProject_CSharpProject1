@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using System.Diagnostics.Metrics;
 using System.Reflection.Metadata;
 using System.Xml.Linq;
 using static System.Formats.Asn1.AsnWriter;
@@ -238,56 +239,50 @@ namespace SimpleStudentManagementProject_CSharpProject1
             }
         }
 
-            //7. Delete a student record (handle shifting logic)____
-            static void DeleteaStudentRecord()
+        //7. Delete a student record (handle shifting logic)____
+        static void DeleteaStudentRecord()
         {
             char choice;
+
             do
             {
-                string Delete_Name;
-                int delete_index = 0;
-            
-                int flag = 0;
-                Console.WriteLine("Enter the Name of the student to be deleted:");
-                Delete_Name = Console.ReadLine().ToLower();
-               
+                int IndexName = 0;
+                Console.WriteLine("Enter the name of student tou want to delete it: ");
+                string DeleteName = Console.ReadLine().ToLower();//store name to delete....
+                for (int i = 0; i < StudentCounter; i++)//loop to know if delete_name is exit in the recored or not... 
+                {
+                    if (Name[i].ToLower() == DeleteName)
+                    {
+                        IndexName = i;
+                        for (int j = IndexName + 1; j < StudentCounter - 1; j++)
+                        {
+                            Name[j] = Name[j - 1];
+                            Mark[j] = Mark[j - 1];
+                            Age[j] = Age[j - 1];
+                            Date[j] = Date[j - 1];
+                        }
+                        StudentCounter--;
+
+                        Console.WriteLine("Student record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Student not found.");
+                    }
+                }
+                //loop to remove delete_name from the recored and shift all elements to the left after delete_name ... 
                 for (int i = 0; i < StudentCounter; i++)
                 {
-                    if (Name[i].ToLower() == Delete_Name)
-                    {
-                        delete_index = Array.IndexOf(Name, Name[i]);
-                        flag = 1;
-                    }
-                }
-                if (flag == 0)
-                {
-                    Console.WriteLine("Not found!");
-                }
-                else
-                {
-                    Console.WriteLine($"Student {Name[delete_index]} is deleted successfully \n");
-                    StudentCounter--;
-                  
-                    for (int i = delete_index; i < StudentCounter; i++)
-                    {
-                        Name[i] = Name[i + 1];
-                        Age[i] = Age[i + 1];
-                        Mark[i] = Mark[i + 1];
-                        Date[i] = Date[i + 1];
-                    }
-                    Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
-                    for (int i = 0; i < StudentCounter; i++)//to view the remain student .... 
-                    {
-                        Console.WriteLine($"{Name[i]} | {Age[i]} | {Mark[i]} | {Date[i]}");
-                    }
+                    Console.WriteLine($"Name: {Name[i]}");
+                    Console.WriteLine($"Mark: {Mark[i]}");
+                    Console.WriteLine($"Age: {Age[i]}");
+                    Console.WriteLine($"Date of Enrollment: {Date[i]:yyyy-MM-dd HH:mm:ss}\n");
                 }
 
-                Console.WriteLine("Do you want to delete anther student? Yes / No");
+                Console.WriteLine("Do you want to delete anther student? y / n");
                 choice = Console.ReadKey().KeyChar;
 
             } while (choice == 'y' || choice == 'Y');
-
-
         }
     }
 }
