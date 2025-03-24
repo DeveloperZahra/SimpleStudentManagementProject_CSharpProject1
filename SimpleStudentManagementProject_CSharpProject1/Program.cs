@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System.Reflection.Metadata;
 using System.Xml.Linq;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace SimpleStudentManagementProject_CSharpProject1
 {
@@ -168,8 +169,8 @@ namespace SimpleStudentManagementProject_CSharpProject1
          
                 double sum = 0;
                 double Average;
-                for (int i = 0; i < StudentCounter; i++)
-                {
+                for (int i = 0; i < StudentCounter; i++)//Use the student counter to repeat based on the number of students coming out...
+            {
                     sum = sum + Mark[i];
                 }
                 Average = sum / StudentCounter;
@@ -200,38 +201,40 @@ namespace SimpleStudentManagementProject_CSharpProject1
         //6. Sort students by marks (highest to lowest)____
         static void SortStudentsByMarks()
         {
-
+            // To set all students as non - printing....
+           
             for (int i = 0; i < StudentCounter; i++)
             {
                 isPrinted[i] = false;
             }
+            //to loop in all student ...
             for (int i = 0; i < StudentCounter; i++)
             {
-                double largest_mark = 0;
+                double lar_mark = 0;
                 int index = 0;
-                for (int j = 0; j < StudentCounter; j++)
                 {
-                    if (Mark[j] > largest_mark && isPrinted[j] == false)
+                    if (Mark[i] < Mark[j])
                     {
-                        largest_mark = Mark[j];
-                        index = Array.IndexOf(Mark, Mark[j]);
+                        // Swap Marks
+                        int tempMark = Mark[i];
+                        Mark[i] = Mark[j];
+                        Mark[j] = tempMark;
+
+                        // Swap names
+                        string tempName = students[i];
+                        students[i] = students[j];
+                        students[j] = tempName;
+
+                        // Swap ages
+                        int tempAge = ages[i];
+                        ages[i] = ages[j];
+                        ages[j] = tempAge;
                     }
                 }
-                sorted_index[i] = index;
-                isPrinted[index] = true;
-
             }
-            Console.WriteLine("Student Information is arranged in descending order: " +
-                  "\n\nName | Age | Mark | Enrollment date");
-            for (int i = 0; i < StudentCounter; i++)
-            {
-                Console.WriteLine($"{Name[sorted_index[i]]} | {Age[sorted_index[i]]} |" +
-                                  $" {Mark[sorted_index[i]]} | {Date[sorted_index[i]]}");
-            }
-        }
 
-        //7. Delete a student record (handle shifting logic)____
-        static void DeleteaStudentRecord()
+            //7. Delete a student record (handle shifting logic)____
+            static void DeleteaStudentRecord()
         {
             char choice;
             do
@@ -282,5 +285,5 @@ namespace SimpleStudentManagementProject_CSharpProject1
 
         }
     }
-    }
 }
+
