@@ -241,7 +241,7 @@ namespace SimpleStudentManagementProject_CSharpProject1
                         }
                     }
                     // Display the top-performing student
-                    Console.WriteLine($"The top pPerforming Student is: {Name[index]} with Mark: {largest_Mark}");
+                    Console.WriteLine($"The top Performing Student is: {Name[index]} with Mark: {largest_Mark}");
                 }
                 catch (Exception ex)
                 {
